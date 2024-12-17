@@ -1,0 +1,38 @@
+Cordova app
+
+https://cordova.apache.org/docs/en/12.x/guide/cli/index.html
+
+Requirements:
+Java JDK;
+ANDROID_HOME;
+ADROID_SDK;
+
+GRADLE:
+https://gradle.org/install/
+curl -s "https://get.sdkman.io" | bash
+sdk install gradle 8.11.1
+
+teste dev:
+
+cd ate a pasta www;
+php -S localhost:8000
+
+build dev:
+
+cordova build android
+procurar em ./app/build/outputs/apk
+
+build prod:
+
+cordova build android --prod --release
+keytool -genkey -v -keystore my-release-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release_key.keystore app/build/outputs/bundle/release/app-release.aab my_key_alias
+
+zipalign -v 4 app/build/outputs/bundle/release/app-release.aab ./optimized-app.aab
+
+para transformar em apk:
+baixar jar
+https://github.com/google/bundletool/releases
+
+java -jar bundletool.jar build-apks --bundle=app./optimized-app.aab --output=./output.apk --mode=universal
