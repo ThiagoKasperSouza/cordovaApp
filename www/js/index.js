@@ -57,6 +57,11 @@ function getCurrentPage() {
             const navHome = document.getElementById("nav_home");
             navHome.classList.add("active");
             break;
+        default:
+            main.innerHTML = Home();
+            const navDef = document.getElementById("nav_home");
+            navDef.classList.add("active");
+            break;
         }
 }
 
